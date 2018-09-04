@@ -397,6 +397,13 @@ $ mount -o rw,remount /system;
 $ cp /data/local/tmp/tcpdump /system/xbin/
 ```
 
+If you get the follwoing error, you need to fix the permissions for tcpdump. 
+
+```bash
+# cd /system/xbin/
+# chmod 755 tcpdump
+```
+
 > Remember: To use tcpdump, you need root privileges on the phone!
 
 Execute `tcpdump` once to see if it works. Once a few packets have come in, you can stop tcpdump by pressing CTRL+c.
@@ -430,7 +437,7 @@ With the pipe (`|`), we sent all output from tcpdump to netcat, which opens a li
 To access port 11111, you need to forward the port to your machine via adb.
 
 ```
-$ adb forward tcp:11111
+$ adb forward tcp:11111 tcp:11111
 ```
 
 The following command connects you to the forwarded port via netcat and piping to Wireshark.
